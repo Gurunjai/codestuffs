@@ -12,7 +12,7 @@ func TestReverseInteger(t *testing.T) {
 
 	for s, v := range in {
 		want := v
-		got := ReverseInteger(s)
+		got := IntReverse(s)
 		if got != want {
 			t.Fatalf("Failed\n\t\t Got: %v \t Want: %v\n", got, want)
 		}
