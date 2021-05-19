@@ -17,6 +17,7 @@ var Cache *FibTable
 type FibVal struct {
 	key int
 	val uint64
+	height uint8
 	left *FibVal
 	right *FibVal
 }
@@ -26,6 +27,7 @@ func NewFibVal(key int, val uint64) *FibVal {
 	return &FibVal {
 		key: key,
 		val: val,
+		height: -1,
 		left: nil,
 		right: nil,
 	}
