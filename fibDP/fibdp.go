@@ -17,7 +17,7 @@ var Cache *FibTable
 type FibVal struct {
 	key int
 	val uint64
-	height uint8
+	height int32
 	left *FibVal
 	right *FibVal
 }
