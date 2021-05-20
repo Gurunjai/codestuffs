@@ -77,7 +77,7 @@ func BenchmarkFibonacciBinet(b *testing.B) {
 		got := fibonacci(n)
 
 		if got != want {
-			b.Fatalf("Failed for DP for N: %v\n \t\t Got: \t%v, \t Want: \t%v\n", n, got, want)
+			b.Fatalf("Failed for Binet for N: %v\n \t\t Got: \t%v, \t Want: \t%v\n", n, got, want)
 		}
 	}
 }
@@ -111,7 +111,7 @@ func BenchmarkFibNormal(b *testing.B) {
 		got := fib(n)
 	
 		if got != want {
-			b.Fatalf("failed for N: %v\n \t\t Got: \t%v, \t Want: \t%v\n", n, got, want)
+			b.Fatalf("Failed for N: %v\n \t\t Got: \t%v, \t Want: \t%v\n", n, got, want)
 		}
 	}
 }
@@ -151,7 +151,16 @@ func TestFibCache(t *testing.T) {
 }
 
 func TestFibEvenSum(t *testing.T) {
-	if v := sumOfEvenFibonacci(4000000); v != 4613732 {
-		t.Fatalf("Mismatched:\n \t\t Want: %v, \t Got: %v\n", 4613732, v)
+	in := map[int]uint64 {
+		4000000: 4613732,
+		3000: 3382,
+		2000000: 1089154,
+		9000000: 4613732,
 	}
+
+	for bound, want := range(in) {
+		if got := sumOfEvenFibonacci(bound); got != want {
+			t.Fatalf("Mismatched for %v:\n \t\t Want: %v, \t Got: %v\n", bound, want, got)
+		}
+	}	
 }

@@ -14,11 +14,14 @@ const (
 )
 
 var (
+	// Cache - for the new cache for the fibonacciy dynamic programming
 	Cache *FibTable
 
-	// For Binet's Formula
+	// SqrtOf5 - For Binet's Formula
 	// http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibFormula.html#section1
 	SqrtOf5 = math.Sqrt(5)
+
+	// Phi - For Binet's Formula
 	Phi = (1.0 + SqrtOf5) / 2
 )
 
@@ -157,8 +160,7 @@ func fib(n int) int {
 	return fib(n - 2) + fib (n - 1)
 }
 
-
-
+// For Binet's Formula
 func sumOfEvenFibonacci(bound int) uint64 {
 	return sumOfEvenFibAtIndex(getTheLargestIndexSmallerThan(bound))
 }
