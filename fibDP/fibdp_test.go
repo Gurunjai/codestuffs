@@ -10,6 +10,7 @@ func initialize() map[int]uint64 {
 		8: 21,
 		16: 987,
 		32: 2178309,
+		33: 3524578,
 		40: 102334155,
 		56: 225851433717,
 		84: 160500643816367088,
@@ -56,6 +57,29 @@ func TestFibonacci(t *testing.T) {
 	}
 
 	// Cache.dump()
+}
+
+func BenchmarkFibonacciBinet(b *testing.B) {
+	in := map[int]uint64 {
+		1: 1,
+		2: 1,
+		4: 3,
+		8: 21,
+		16: 987,
+		32: 2178309,
+		33: 3524578,
+		40: 102334155,
+		56: 225851433717,
+		78: 8944394323791463,
+	}
+
+	for n, want := range(in) {
+		got := fibonacci(n)
+
+		if got != want {
+			b.Fatalf("Failed for DP for N: %v\n \t\t Got: \t%v, \t Want: \t%v\n", n, got, want)
+		}
+	}
 }
 
 func BenchmarkFibonacci(b *testing.B) {
@@ -123,5 +147,11 @@ func TestFibCache(t *testing.T) {
 		if want != node.val {
 			t.Fatalf("Failed for key: %v\n, \t\t Got: \t%v, \t Want: \t%v", k, node.val, want)
 		}
+	}
+}
+
+func TestFibEvenSum(t *testing.T) {
+	if v := sumOfEvenFibonacci(4000000); v != 4613732 {
+		t.Fatalf("Mismatched:\n \t\t Want: %v, \t Got: %v\n", 4613732, v)
 	}
 }
