@@ -1,9 +1,6 @@
 package fibdp
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 const (
 	// TableSize The size of the Hash Table
@@ -16,13 +13,6 @@ const (
 var (
 	// Cache - for the new cache for the fibonacciy dynamic programming
 	Cache *FibTable
-
-	// SqrtOf5 - For Binet's Formula
-	// http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibFormula.html#section1
-	SqrtOf5 = math.Sqrt(5)
-
-	// Phi - For Binet's Formula
-	Phi = (1.0 + SqrtOf5) / 2
 )
 
 // FibVal Node representing the {key: value} pair
@@ -158,25 +148,6 @@ func fib(n int) int {
 	}
 
 	return fib(n - 2) + fib (n - 1)
-}
-
-// For Binet's Formula
-func sumOfEvenFibonacci(bound int) uint64 {
-	return sumOfEvenFibAtIndex(getTheLargestIndexSmallerThan(bound))
-}
-
-func getTheLargestIndexSmallerThan(bound int) int {
-	return int(math.Floor( math.Log(SqrtOf5 * float64(bound)) / math.Log(Phi)))
-}
-
-func sumOfEvenFibAtIndex(index int) uint64 {
-	index = index / 3 * 3
-
-	return (fibonacci(index + 2) - 1) / 2
-}
-
-func fibonacci(index int) uint64 {
-	return uint64(math.Round(1.0 / SqrtOf5 * math.Pow(Phi, float64(index))))
 }
 
 // Initialize used to define the cache and set the initial parameters
