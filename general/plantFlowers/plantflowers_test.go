@@ -13,15 +13,14 @@ func max(x, y int) int {
 	return y
 }
 
-func TestPlantFlowers(t *testing.T) {
-	in := []int {28, 23, 12, 37, 25, 9, 7, 22, 16}
+func maxValPlantFlowers(in []int) {
 	maxArea := []int{}
 
 	for i := 1; i < len(in) - 1; i += 2 {
 		maxArea = append(maxArea, max(max(in[i-1], in[i]), max(in[i], in[i+1])))
 	}
 
-	fmt.Println(maxArea)
+	fmt.Printf("Max Nutrition Value: %v\n", maxArea)
 }
 
 func TestHeapPlantFlower(t *testing.T) {
@@ -30,6 +29,10 @@ func TestHeapPlantFlower(t *testing.T) {
 		{28, 23, 12, 37, 9, 7, 22, 16},
 		{28, 23, 12, 37, 25, 94, 9, 7, 22, 16},
 		{14, 23, 12, 37, 25, 9, 7, 2, 6, 22, 16},
+	}
+
+	for _, v := range(in) {
+		maxValPlantFlowers(v)
 	}
 
 	for _, v := range(in) {

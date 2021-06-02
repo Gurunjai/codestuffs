@@ -12,10 +12,10 @@ type FlowerBed struct {
 
 // FlowerBedHeap - Underlying interface type for the flower bed type
 type FlowerBedHeap []*FlowerBed
-
+/* 
 // IntArr - Abstract type to provide the Integer Array for Neighbor validation
 type IntArr []int
-
+ */
 func newFlowerBed(v, p int) *FlowerBed {
 	return &FlowerBed {
 		val: v,
@@ -61,7 +61,7 @@ func (fh *FlowerBedHeap) Peek() interface{} {
 	return x
 }
 
-// Push - Push or append the integer position value to the IntArr
+/* // Push - Push or append the integer position value to the IntArr
 func (ia *IntArr) Push(pos int) {
 	*ia = append(*ia, pos)
 }
@@ -78,30 +78,33 @@ func (ia *IntArr) IsNeighbor(i int) bool {
 }
 
 // ToIntArray - populate the IntArray to a type of int slice
-func (ia *IntArr) ToIntArray() []int {
-	var out []int
+func (ia *IntArr) ToIntArray() (out []int) {
 	for _, v := range(*ia) {
 		out = append(out, v)
 	}
-
-	return out
+	return
 }
-
+ */
+ 
 func plantFlowers(arr []int) []int {
 	h := &FlowerBedHeap{}
-	var out IntArr
+	out := []int{}
 	heap.Init(h)
 
 	for i, val := range(arr) {
 		heap.Push(h, newFlowerBed(val, i))
 	}
 
-	for h.Len() > 0 {
+	oLoop: for h.Len() > 0 {
 		v := heap.Pop(h).(*FlowerBed)
-		if ! out.IsNeighbor(v.pos) {
-			out.Push(v.pos)
+		for _, p := range(out) {
+			if v.pos == p + 1 || v.pos == p - 1{
+				continue oLoop
+			}
 		}
+		
+		out = append(out, v.pos)
 	}
 
-	return out.ToIntArray()
+	return out
 }
