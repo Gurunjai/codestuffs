@@ -4,6 +4,21 @@ import (
 	"container/heap"
 )
 
+/* 
+	You have to plant a few flower-plants in a row of n locations, based
+	on the nutrition availability in the soil at each location the plants
+	will grow at different heights. The nutrition value is directly
+	proportional to plant growth, which means, the plant will grow more
+	at a location where nutrition value is high. You can plant as many
+	plants as you want as long as you do not plant them next to each
+	other. The goal is to find the plant locations that maximize the
+	total height of all planted flower plants. you have given an array
+	of n values v[0:n-1], each value represents the nutrition value
+	at location. The array index will be considered as a location.
+	eg. v[] = {28, 23, 12, 37, 9, 7, 22, 16}, The nutrition at the
+	0th location is 28 and so on. 
+*/
+
 // FlowerBed - Defined Type to hold the heap value and position in the array
 type FlowerBed struct {
 	val int
@@ -89,11 +104,16 @@ func (ia *IntArr) ToIntArray() (out []int) {
 func plantFlowers(arr []int) []int {
 	h := &FlowerBedHeap{}
 	out := []int{}
+	
 	heap.Init(h)
-
 	for i, val := range(arr) {
 		heap.Push(h, newFlowerBed(val, i))
 	}
+
+	// for i, val := range(arr) {
+	// 	*h = append(*h, newFlowerBed(val, i))
+	// }
+	// heap.Init(h)
 
 	oLoop: for h.Len() > 0 {
 		v := heap.Pop(h).(*FlowerBed)

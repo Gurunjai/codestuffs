@@ -150,6 +150,18 @@ func fib(n int) int {
 	return fib(n - 2) + fib (n - 1)
 }
 
+func binetFib(n int) int {
+	if n <= 2 {
+		return 1
+	}
+
+	if n == 3 {
+		return 2
+	}
+
+	return int(math.Floor(binetFib(n-1) * 1.618))
+}
+
 // Initialize used to define the cache and set the initial parameters
 func init() {
 	Cache = NewFibTable(TableSize)
