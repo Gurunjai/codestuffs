@@ -19,7 +19,8 @@ type DoubleList struct {
 	head, tail *DoubleNode
 }
 
-func newNode(val int) *Node {
+// NewNode to provide the single linked list
+func NewNode(val int) *Node {
 	return &Node{
 		val : val,
 		next : nil,
@@ -34,7 +35,8 @@ func newDoubleNode(val int) *DoubleNode {
 	}
 }
 
-func newDoubleList() *DoubleList {
+// NewDoubleList provides the doubly linked list
+func NewDoubleList() *DoubleList {
 	return &DoubleList{
 		head : nil,
 		tail : nil,
@@ -119,7 +121,7 @@ func (dl *DoubleList) Delete(val int) {
 
 // Reverse - Reverse a doubly linked list?? Is it really required?
 func (dl *DoubleList) Reverse() *DoubleList {
-	out := newDoubleList()
+	out := NewDoubleList()
 
 	cur := dl.tail
 	for cur != nil {
@@ -147,7 +149,7 @@ func (dl *DoubleList) Walk() {
 
 // InsertAtHead - insert the val into the head of the list
 func InsertAtHead(head *Node, val int) *Node {
-	tmp := newNode(val)
+	tmp := NewNode(val)
 	if head != nil {
 		tmp.next = head
 	} 
@@ -158,7 +160,7 @@ func InsertAtHead(head *Node, val int) *Node {
 
 // InsertAtTail - insert the val into the tail of the list
 func InsertAtTail(head *Node, val int) *Node {
-	tmp := newNode(val)
+	tmp := NewNode(val)
 	if head == nil {
 		head = tmp
 	} else {

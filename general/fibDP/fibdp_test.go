@@ -45,6 +45,28 @@ func TestFibSequence(t *testing.T) {
 	}
 }
 
+func TestBinetFibSequence(t *testing.T) {
+	in := map[int]int {
+		1: 1,
+		2: 1,
+		4: 3,
+		8: 21,
+		16: 987,
+		32: 2178309,
+		40: 102334155,
+		// Unable to do this an kept on waiting
+		// 50: 0,
+	}
+
+	for n, want := range(in) {
+		got := binetFib(n)
+
+		if got != want {
+			t.Fatalf("failed for N: %v\n \t\t Got: \t%v, \t Want: \t%v\n", n, got, want)
+		}
+	}
+}
+
 func TestFibonacci(t *testing.T) {
 	in := initialize()
 
@@ -86,6 +108,28 @@ func BenchmarkFibNormal(b *testing.B) {
 	
 	for n, want := range(in) {
 		got := fib(n)
+	
+		if got != want {
+			b.Fatalf("Failed for N: %v\n \t\t Got: \t%v, \t Want: \t%v\n", n, got, want)
+		}
+	}
+}
+
+func BenchmarkBinetFib(b *testing.B) {
+	in := map[int]int {
+		1: 1,
+		2: 1,
+		4: 3,
+		8: 21,
+		16: 987,
+		32: 2178309,
+		40: 102334155,
+		// Unable to do this an kept on waiting
+		// 50: 0,
+	}
+	
+	for n, want := range(in) {
+		got := binetFib(n)
 	
 		if got != want {
 			b.Fatalf("Failed for N: %v\n \t\t Got: \t%v, \t Want: \t%v\n", n, got, want)

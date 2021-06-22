@@ -111,7 +111,7 @@ func TestSLLInsertReverseWalk(t *testing.T) {
 func TestDLLInsertAtHead(t *testing.T) {
 	in := []int{10, 20, 30, 40, 50, 60, 70, 80}
 
-	head := newDoubleList()
+	head := NewDoubleList()
 	for _, v := range(in) {
 		head.InsertAtHead(v)
 	}
@@ -128,7 +128,7 @@ func TestDLLInsertAtHead(t *testing.T) {
 func TestDLLInsertAtTail(t *testing.T) {
 	in := []int{10, 20, 30, 40, 50, 60, 70, 80}
 
-	head := newDoubleList()
+	head := NewDoubleList()
 	for _, v := range(in) {
 		head.InsertAtTail(v)
 	}
@@ -147,7 +147,7 @@ func TestDLLInsertFind(t *testing.T) {
 	in := []int{10, 20, 30, 40, 50, 60, 70, 80}
 	const find int = 30
 
-	head := newDoubleList()
+	head := NewDoubleList()
 	for _, v := range(in) {
 		head.InsertAtTail(v)
 	}
@@ -162,7 +162,7 @@ func TestDLLInsertDelete(t *testing.T) {
 	in := []int{10, 20, 30, 40, 50, 60, 70, 80}
 	const del int = 30
 
-	head := newDoubleList()
+	head := NewDoubleList()
 	for _, v := range(in) {
 		head.InsertAtTail(v)
 	}
@@ -177,7 +177,7 @@ func TestDLLInsertDelete(t *testing.T) {
 func TestDLLInsertReverse(t *testing.T) {
 	in := []int{10, 20, 30, 40, 50, 60, 70, 80}
 	
-	head := newDoubleList()
+	head := NewDoubleList()
 	for _, v := range(in) {
 		head.InsertAtTail(v)
 	}

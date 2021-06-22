@@ -1,6 +1,9 @@
 package fibdp
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 const (
 	// TableSize The size of the Hash Table
@@ -155,11 +158,10 @@ func binetFib(n int) int {
 		return 1
 	}
 
-	if n == 3 {
-		return 2
-	}
+	SqrtOf5 := math.Sqrt(5.0)
+	Phi := (1.0 + SqrtOf5) / 2
 
-	return int(math.Floor(binetFib(n-1) * 1.618))
+	return int(math.Round(1.0 / SqrtOf5 * math.Pow(Phi, float64(n))))
 }
 
 // Initialize used to define the cache and set the initial parameters
