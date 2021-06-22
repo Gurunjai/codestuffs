@@ -2,6 +2,7 @@ package lru
 
 import (
 	"fmt"
-	"datastructures/list"
 )
+
+import "general/datastructures/list"
 
