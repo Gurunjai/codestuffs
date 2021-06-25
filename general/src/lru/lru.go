@@ -4,5 +4,5 @@ import (
 	"fmt"
 )
 
-import "./datastructures/list"
+import "datastructures/list"
 
