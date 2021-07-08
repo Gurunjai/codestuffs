@@ -3,6 +3,8 @@ package sample
 import (
 	// "fmt" 
 	"math"
+	"unicode"
+	"strings"
 )
 
 func GetMod(n int) int {
@@ -49,4 +51,24 @@ func GetRemainder(num1, num2 int) int {
 func msbSet(n int) int {
 	x := pow2(n)
 	return int(math.Log2(float64(x)))
+}
+
+func strReverse(str string) string {
+	modified := func(r rune) rune {
+		if unicode.IsNumber(r) {
+			return ' '
+		}
+
+		return r
+	}
+
+	str = strings.Map(modified, str)
+	str = strings.ReplaceAll(str, " ", "")
+
+	runes := []rune(str)
+	for i, j := 0, len(runes) - 1; i <= j; i, j = i + 1, j - 1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+
+	return string(runes)
 }

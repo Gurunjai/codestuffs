@@ -99,3 +99,15 @@ func TestMsbSet(t *testing.T) {
 		}
 	}
 }
+
+func TestStrReplace(t *testing.T) {
+	in := map[string]string {
+		"          oll2345     eH65    ": "Hello",
+	}
+
+	for str, want := range(in) {
+		if got := strReverse(str); got != want {
+			t.Fatalf("Mismatch for %q\n \t Got: %q\n \t Want: %q\n", str, got, want)
+		}
+	}
+}

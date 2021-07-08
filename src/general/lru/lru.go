@@ -1,8 +1,16 @@
 package lru
 
 import (
-	"fmt"
+	// "fmt"
+	"gkrish/list"
 )
 
-import "datastructures/list"
+var lCache *lruCache
 
+type lruCache struct {
+	list.DoubleList
+}
+
+func addToCache(key int) {
+	
+}
