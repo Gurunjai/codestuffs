@@ -1,8 +1,12 @@
 package tbcrawler
 
-import "os"
-import "log"
+import (
+	"os"
+	"log"
+	"time"
+)
 
+/* 
 type Pipeline struct {
 	dirCh chan string
 	filech chan string
@@ -10,38 +14,53 @@ type Pipeline struct {
 	rootDir string
 }
 
-func NewPipeLine()
-func analyzeDirectory(dirs string) {
+ */
+ func analyzeDirectory(dirs string) {
 	if dirs == "" {
 		return
 	}
 
-	dirCh := make(chan string)
 	stop := make(chan bool)
+	var cnt int
+	
+	processDirs(dirs, stop, &cnt)
 
-	go processDirs(dirCh, stop)
-	dirCh <- dirs
 	for x := range stop {
 		if x == false {
 			log.Fatalf("error..... Quitting")
 		}
 	}
+
+	log.Printf("Counted for (%q): %v \n", dirs, cnt)
 }
 
-func processDirs(dirCh chan string, stop chan bool) {
-	for out := range dirCh {
-		files, err := os.ReadDir(out)
-		if err != nil {
-			log.Printf("Failed to process the directory")
-			stop <- false
-		}
-		
-		for _, file := range files {
-			if file.IsDir() {
-				dirCh <- file.Name()
-			}
+func processDirs(dirs string, stop chan bool, cnt *int) int {
+	var c int
+	files, err := os.ReadDir(dirs)
+	if err != nil {
+		stop <- false
+		close(stop)
+		return c
+	}
 
-			log.Println(file.Name())
+	t := time.NewTimer(500 * time.Millisecond)
+
+	oLoop: for {
+		select {
+			default:
+				for _, file := range files {
+					if file.IsDir() {
+						analyzeDirectory(dirs + "/" + file.Name())
+					} else {
+						log.Println(file.Name())
+						*cnt++
+						c++
+					}
+				}
+			case <- t.C:
+				close(stop)
+				break oLoop
 		}
 	}
+	return c
 }

@@ -75,6 +75,14 @@ func TestArrayPlant(t *testing.T) {
 	}
 }
 
+func TestArrayPlantTwoPtr(t *testing.T) {
+	in := defineInputArray()
+	
+	for _, v := range(in) {
+		fmt.Println(plantFlowersTwoPtr(v))
+	}
+}
+
 func TestHeapPlant(t *testing.T) {
 	in := defineInputArray()
 

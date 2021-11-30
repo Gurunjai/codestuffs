@@ -111,3 +111,10 @@ func TestStrReplace(t *testing.T) {
 		}
 	}
 }
+
+func TestHasher(t *testing.T) {
+	t.Errorf("Out Value Index for 0xa5a5a5f0 & 0x80: %v\n", destHasher(0xa5a5a5f0, 0x80))
+	t.Errorf("Out Value Index for 0xa8a8a5f0 & 0x80: %v\n", destHasher(0xa8a8a5f0, 0x80))
+	t.Errorf("Out Value Index for 0xa0a8a5f0 & 0x80: %v\n", destHasher(0xa0a8a5f0, 0x80))
+	t.Errorf("Out Value Index for 0x9890a5f0 & 0x80: %v\n", destHasher(0x9890a5f0, 0x80))
+}

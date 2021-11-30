@@ -72,3 +72,16 @@ func strReverse(str string) string {
 
 	return string(runes)
 }
+
+const (
+	TotalDestMask = (2048 - 1)
+)
+
+func destHasher(dstIp, port uint32) uint32 {
+	hashIndex := dstIp ^ port
+	hashIndex ^= (hashIndex >> 16)
+	hashIndex ^= hashIndex >> 8
+	hashIndex ^= hashIndex >> 3
+	hashIndex = hashIndex & TotalDestMask
+	return hashIndex
+}

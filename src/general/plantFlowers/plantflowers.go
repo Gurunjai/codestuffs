@@ -1,6 +1,7 @@
 package plantflowers
 
 import (
+	// "fmt"
 	"container/heap"
 )
 
@@ -127,4 +128,22 @@ func plantFlowers(arr []int) []int {
 	}
 
 	return out
+}
+
+func plantFlowersTwoPtr(arr []int) int {
+	fl1, fl2 := 0, 0
+	
+	for _, v := range(arr) {
+		temp := max(fl1 + v, fl2)
+		fl1 = fl2
+		fl2 = temp
+	}
+
+	return fl2
+}
+
+func max(x, y int) int {
+	if x > y { return x }
+
+	return y
 }
